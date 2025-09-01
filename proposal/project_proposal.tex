@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+% \usepackage{amsmath}
+\usepackage{mymacros}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+
+\title{CSC111 Project 2 Proposal: Tree-Based Equation Solver}
+\author{Areez Chishtie}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Problem Description and Research Question}
+
+There are many tools available online for solving various classes of equations. According to Wikipedia, this kind of software is called a \textit{computer algebra system (CAS)}. The most obvious utility offered by a CAS is to perform and/or verify computations that we may do, but more generally, a CAS provides an interface for representing and manipulating algebraic objects with code. The standard data structure used by CAS's to represent algebraic equations are trees, in a way that is reminiscent of our case study of abstract syntax trees. \textbf{The core of my project will consist of a basic computer algebra system that takes an equation and a desired variable as input, and produces a solution to the equation as output.} The system should be capable of solving linear/quadratic equations, some other polynomial equations, and possibly, some equations involving trigonometric and exponential functions. The project will also include a visualization of the tree induced by the given equation, and hopefully a step-by-step walkthrough of the manipulations leading to the solution.
+
+\section*{Computational Plan}
+
+The CAS will use a tree to represent the given equation: the root values will be unary/binary operations/symbols like $+, -, \times, =, \log$, and the left/right subtrees will be expressions taken as arguments on the left-/right-hand sides of the operation. On this tree, the CAS will use some kind of algorithm to recursively "apply operations to both sides" until the corresponding equation attains a pre-defined form, from which point a base case could explicitly construct the solution(s) (e.g., by applying the quadratic equation).
+
+I intend for the user to be able to type the equation as a string input, so some part of the CAS needs to be responsible for converting a string into a tree. I would like the output to be a graphical user interface that includes an interactable representation of the tree for the user's given equation. A nice feature would be the ability to "walk through" the produced solution and see what the tree looked like at each stage of the algorithm.
+
+The graphical interface will be built with the help of an additional Python library. One promising library is "igraph", which supports the visualization of a tree as a special case of a graph. This library has a "Graph" class which stores a list of tuples representing the edges. Once I compute these tuples, a simple call to the "plot" method, with the layout option set to "Reingold-Tilford", should produce a visualization of the graph as a tree.
+
+\section*{References}
+
+\begin{itemize}
+\item Wikipedia contributors. (2023, December 20). Computer algebra system. Wikipedia. \\
+    \href{https://en.wikipedia.org/wiki/Computer_algebra_system?oldformat=true}{https://en.wikipedia.org/wiki/Computer_algebra_system?oldformat=true}
+\item Solving equations. (n.d.). The University of Texas at Austin, Computer Science. Retrieved March 3, 2024, from \href{https://www.cs.utexas.edu/users/novak/algebra.pdf}{https://www.cs.utexas.edu/users/novak/algebra.pdf}
+\item igraph R manual pages. (n.d.). \href{https://igraph.org/r/doc/}{https://igraph.org/r/doc/}
+\item Igraph. (n.d.). The nodes of tree are overlap when plot a tree. Maybe a bug when plot compex trees. · Issue \#186 · igraph/python-igraph. GitHub. \href{https://github.com/igraph/python-igraph/issues/186}{https://github.com/igraph/python-igraph/issues/186}
+\end{itemize}
+
+
+
+
+
+
+% NOTE: LaTeX does have a built-in way of generating references automatically,
+% but it's a bit tricky to use so you are allowed to write your references manually
+% using a standard academic format like MLA or IEEE.
+% See project proposal handout for details.
+
+\end{document}
